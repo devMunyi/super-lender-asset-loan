@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Sample Page</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="loader"> <img src="graphics/loader.gif" height="30px"> <span id="processing_">Processing...</span> </div>
+<div class="header" id="header">
+
+</div>
+<div class="main_wrapper light">
+    <div id="toast" class="toastsuccess">Toast</div>
+    <div class="overlay">   <a onclick="popuphide();" class="hidebut"><img src="graphics/cancel_64.png" height="20px"></a>
+        <div class="overlayin"> </div>
+    </div>
+
+    <div class="dash_wrap" style="margin-top: 0px;">
+
+
+        <div class="lower_dom">
+            <h3 style="margin-bottom: 5px">A Title</h3>
+
+        </div>
+    </div>
+</div>
+<div class="footer" id="footer">
+        <span class="bot-nav"><a><img class="bot-icon" src="graphics/home-black.png"></a></span>
+        <span class="bot-nav"><a><img class="bot-icon" src="graphics/support.png"></a></span>
+        <span class="bot-nav"><a><img class="bot-icon" src="graphics/settings-black.png"></a></span>
+</div>
+
+
+<script src="js/jquery.3.4.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="config/config.js"></script>
+<script>
+    $('document').ready(function () {
+      //  session_check();
+      header(true, 'SEND MONEY');
+      $('#user_').html(localStorage.getItem("l_name"));
+    });
+</script>
+
+</body>
+</html>

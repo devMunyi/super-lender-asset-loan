@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Landing</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div class="main_wrapper">
+    <div id="splash_logo_wrapper">
+
+        <br/>
+
+        <img src="graphics/logo-white.png" id="splash_logo" width="250px">
+        <br/>
+
+    </div>
+    <h3 id="splash-text">Tagline</h3>
+</div>
+<script src="js/jquery.3.4.1.min.js"></script>
+<script src="js/main.js?v=1"></script>
+<script>
+
+
+    $('document').ready(function () {
+        // Check if the screen size corresponds to a mobile device
+       function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Redirect or block access based on the screen size
+        function checkScreenSize() {
+            if (!isMobileDevice()) {
+                // Redirect to a different page or display a message indicating that the app is only accessible via mobile devices
+              //  window.location.href = 'https://www.stawika.co.ke';
+                // Alternatively, you can show a message directly on the current page without redirecting:
+                // document.body.innerHTML = '<h1>This app is only accessible via mobile devices.</h1>';
+            }
+        }
+
+        // Call the checkScreenSize function when the page loads
+        window.addEventListener('load', checkScreenSize);
+
+
+        setTimeout(function () {
+          redirect("login.html");
+        }, 2000);
+    });
+</script>
+</body>
+</html>

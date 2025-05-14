@@ -1,0 +1,230 @@
+ALTER TABLE `tenova_local`.`o_customers` 
+ADD COLUMN `pin_` VARCHAR(55) NULL AFTER `sec_data`;
+
+ALTER TABLE `tenova_local`.`o_customers` 
+ADD COLUMN `device_id` VARCHAR(55) NULL AFTER `pin_`;
+
+
+CREATE TABLE `tenova_local`.`o_customer_sessions` (
+  `uid` INT(10) NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(10) NOT NULL,
+  `device_id` VARCHAR(105) NULL,
+  `session_code` VARCHAR(105) NULL,
+  `started_date` DATETIME NULL,
+  `ending_date` DATETIME NULL,
+  `status` INT(1) NULL,
+  PRIMARY KEY (`uid`));
+
+
+CREATE TABLE `tenova_local`.`o_changelog` (
+  `uid` INT(10) NOT NULL AUTO_INCREMENT,
+  `tbl_` VARCHAR(45) NULL,
+  `query_` TEXT(1000) NOT NULL,
+  `change_by` INT(10) NULL,
+  `change_date` DATETIME NULL,
+  `status` INT(1) NULL,
+  PRIMARY KEY (`uid`));
+
+
+ALTER TABLE `tenova_local`.`o_loan_products` 
+ADD COLUMN `automatic_disburse` INT(1) NULL DEFAULT 0 AFTER `disburse_method`;
+
+ALTER TABLE `tenova_local`.`o_customers` 
+ADD COLUMN `flag` INT(5) NULL AFTER `device_id`;
+
+ALTER TABLE `tenova_local`.`o_customers` 
+ADD COLUMN `total_loans` INT(5) NULL DEFAULT 0 AFTER `flag`;
+
+
+
+CREATE TABLE `tenova_local`.`o_customer_limits` (
+  `uid` INT(10) NOT NULL AUTO_INCREMENT,
+  `customer_uid` INT(10) NOT NULL,
+  `amount` DOUBLE(10,2) NOT NULL,
+  `given_date` DATETIME NULL,
+  `given_by` INT(10) NULL,
+  `comments` VARCHAR(245) NULL,
+  `status` INT(1) NULL,
+  PRIMARY KEY (`uid`));
+
+CREATE TABLE `tenova_local`.`o_ussd_sessions` (
+  `uid` INT(10) NOT NULL AUTO_INCREMENT,
+  `session_id` VARCHAR(105) NOT NULL,
+  `started_date` DATETIME NULL,
+  `stage_` INT NULL,
+  `mobile_number` VARCHAR(15) NULL,
+  `info_supplied` VARCHAR(245) NULL,
+  `status` INT NULL,
+  PRIMARY KEY (`uid`));
+
+ALTER TABLE `tenova_local`.`o_ussd_sessions` 
+CHANGE COLUMN `info_supplied` `info_supplied` TEXT(500) NULL DEFAULT NULL ;
+
+ALTER TABLE `tenova_local`.`o_customer_conversations` 
+CHANGE COLUMN `transcript` `transcript` MEDIUMTEXT NOT NULL ;
+
+ALTER TABLE `stawika_db`.`o_customers` 
+CHANGE COLUMN `physical_address` `physical_address` VARCHAR(250) NULL ,
+CHANGE COLUMN `passport_photo` `passport_photo` VARCHAR(250) NULL ,
+CHANGE COLUMN `gender` `gender` VARCHAR(5) NULL COMMENT 'M, F' ,
+CHANGE COLUMN `dob` `dob` DATE NULL ,
+CHANGE COLUMN `added_date` `added_date` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ,
+CHANGE COLUMN `events` `events` MEDIUMTEXT NULL ,
+CHANGE COLUMN `status` `status` INT NULL DEFAULT 2 COMMENT 'From o_customer_statuses' ;
+
+
+ALTER TABLE `stawika_db`.`o_customers` 
+DROP INDEX `email_address_` ;
+
+ALTER TABLE `stawika_db`.`o_customers` 
+CHANGE COLUMN `loan_limit` `loan_limit` DOUBLE(100,2) NULL DEFAULT '0.00' ;
+
+ALTER TABLE `stawika_db`.`o_permissions` 
+CHANGE COLUMN `rec` `rec` INT NULL ,
+CHANGE COLUMN `general_` `general_` INT NULL DEFAULT '0' ,
+CHANGE COLUMN `create_` `create_` INT NULL DEFAULT '0' ,
+CHANGE COLUMN `read_` `read_` INT NULL DEFAULT '0' ,
+CHANGE COLUMN `update_` `update_` INT NULL DEFAULT '0' ,
+CHANGE COLUMN `delete_` `delete_` INT NULL DEFAULT '0' ;
+
+
+ALTER TABLE `tenova_local`.`o_customer_conversations` 
+ADD COLUMN `branch` INT NULL DEFAULT 0 AFTER `customer_id`;
+
+CREATE TABLE `sl_db`.`o_customer_products` ( `uid` INT(20) NOT NULL AUTO_INCREMENT ,  `customer_id` INT(10) NOT NULL ,  `product_id` INT(10) NOT NULL ,  `added_date` DATETIME NOT NULL ,  `status` INT(1) NOT NULL ,    PRIMARY KEY  (`uid`)) ENGINE = InnoDB;
+
+ALTER TABLE `main_db`.`o_campaigns` 
+CHANGE COLUMN `target_customers` `target_customers` VARCHAR(50) NOT NULL ;
+
+ALTER TABLE `tenova_local`.`o_campaigns` 
+ADD COLUMN `total_customers` INT NULL AFTER `target_customers`;
+
+ALTER TABLE `tenova_local`.`o_campaigns` 
+CHANGE COLUMN `running_date` `running_date` DATETIME NOT NULL ;
+
+
+
+
+
+
+ALTER TABLE `stawika_db`.`o_loans` 
+ADD COLUMN `last_pay_date` DATE NULL AFTER `final_due_date`;
+
+
+
+
+
+
+CREATE TABLE `tenova_local`.`o_mpesa_queues` (
+  `uid` INT NOT NULL AUTO_INCREMENT,
+  `loan_id` INT UNSIGNED NOT NULL,
+  `amount` DOUBLE(50,2) NULL,
+  `added_date` DATETIME NULL,
+  `sent_date` DATETIME NULL,
+  `feedbackcode` VARCHAR(45) NULL,
+  `trials` INT NULL DEFAULT 1,
+  `status` INT NULL DEFAULT 0 COMMENT '1-queed, 2-sent, 0-deleted',
+  PRIMARY KEY (`uid`))
+COMMENT = 'List disbursements that are to be done later';
+
+
+ALTER TABLE `newark_db`.`o_targets` 
+CHANGE COLUMN `amount` `amount` BIGINT(10) NULL DEFAULT NULL ;
+
+ALTER TABLE `tenova_local`.`o_loans` 
+ADD COLUMN `allocation` VARCHAR(10) NULL DEFAULT 'BRANCH' AFTER `current_co`;
+
+ALTER TABLE `tenova_local`.`o_users` 
+ADD COLUMN `tag` VARCHAR(10) NULL  AFTER `user_group`;
+
+
+CREATE TABLE `tenova_local`.`o_regions` ( `uid` INT(5) NOT NULL AUTO_INCREMENT ,  `name` VARCHAR(40) NOT NULL ,  `manager_id` INT(10) NULL ,  `status` INT(1) NOT NULL ,    PRIMARY KEY  (`uid`),    UNIQUE  (`name`)) ENGINE = InnoDB;
+
+ALTER TABLE `tenova_local`.`o_branches` 
+ADD COLUMN `region_id` INT(10) NULL DEFAULT 0 AFTER `address`;
+
+ALTER TABLE `tenova_local`.`o_customers` 
+ADD COLUMN `current_agent` INT NULL DEFAULT 0 AFTER `added_by`;
+
+ALTER TABLE `maria_simple`.`o_loans` 
+ADD COLUMN `pending_event` VARCHAR(45) NULL COMMENT 'For large events like penalties, to assist is paged actions' AFTER `loan_flag`;
+ALTER TABLE `maria_simple`.`o_loans` 
+CHANGE COLUMN `pending_event` `pending_event` INT NULL DEFAULT 0 COMMENT 'For large events like penalties, to assist is paged actions' ;
+
+ALTER TABLE `maria_simple`.`o_users` 
+ADD COLUMN `pair` INT NULL DEFAULT 0 AFTER `tag`;
+
+CREATE TABLE `tenova_local`.`o_customer_groups` ( `uid` INT NOT NULL AUTO_INCREMENT ,  `group_name` VARCHAR(50) NOT NULL ,  `group_description` VARCHAR(250) NOT NULL ,  `added_date` DATETIME NOT NULL,  `added_by` INT NOT NULL , `status` INT NOT NULL ,    PRIMARY KEY  (`uid`),    UNIQUE  (`group_name`)) ENGINE = InnoDB;
+
+ALTER TABLE `tenova_local`.`o_loans` 
+ADD COLUMN `group_id` INT NULL DEFAULT 0 AFTER `customer_id`;
+
+CREATE TABLE `tenova_local`.`o_loan_types` ( `uid` INT NOT NULL AUTO_INCREMENT ,  `icon` VARCHAR(20) NOT NULL ,  `name` VARCHAR(30) NOT NULL ,  `status` INT NOT NULL ,    PRIMARY KEY  (`uid`)) ENGINE = InnoDB;
+ALTER TABLE `tenova_local`.`o_loans`  ADD `loan_type` INT NOT NULL DEFAULT '0'  AFTER `product_id`;
+
+ALTER TABLE `tenova_local`.`o_incoming_payments` 
+ADD COLUMN `group_id` INT NULL DEFAULT 0 COMMENT 'For group loans' AFTER `status`;
+ALTER TABLE `tenova_local`.`o_incoming_payments` 
+CHANGE COLUMN `group_id` `group_id` INT(11) NULL DEFAULT 0 COMMENT 'For group loans' AFTER `branch_id`;
+ALTER TABLE `tenova_local`.`o_incoming_payments` 
+ADD COLUMN `split_from` INT NULL DEFAULT 0 COMMENT 'If a payment is split from another payment' AFTER `group_id`;
+
+CREATE TABLE `tenova_local`.`o_payment_categories` (
+  `uid` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
+  `status` INT NULL,
+  PRIMARY KEY (`uid`));
+
+ALTER TABLE `tenova_local`.`o_incoming_payments` 
+ADD COLUMN `payment_category` INT(11) NULL DEFAULT 1 AFTER `payment_method`;
+
+INSERT INTO `tenova_local`.`o_payment_categories` (`name`, `status`) VALUES ('Loan Repayment', '1');
+
+CREATE TABLE `tenova_local`.`o_archives` (
+  `uid` INT NOT NULL AUTO_INCREMENT,
+  `key` VARCHAR(45) NOT NULL,
+  `value` VARCHAR(145) NULL,
+  `added_date` DATETIME NULL,
+  `added_by` INT NULL,
+  `status` INT NULL,
+  PRIMARY KEY (`uid`));
+
+CREATE TABLE `tenova_local`.`o_reports_custom` ( `uid` INT NOT NULL AUTO_INCREMENT ,  `title` VARCHAR(30) NOT NULL ,  `description` VARCHAR(100) NOT NULL ,  `report_url` VARCHAR(200) NOT NULL ,  `added_date` DATETIME NOT NULL ,  `status` INT(1) NOT NULL ,    PRIMARY KEY  (`uid`),    UNIQUE  (`title`)) ENGINE = InnoDB;
+
+ALTER TABLE `tenova_local`.`o_pairing` 
+ADD COLUMN `branch` INT NULL DEFAULT 0 AFTER `co`;
+
+ALTER TABLE `maria_simple`.`o_customers` 
+CHANGE COLUMN `physical_address` `physical_address` TEXT(1000) NOT NULL ;
+
+CREATE TABLE `o_group_members` (
+ `uid` int(11) NOT NULL AUTO_INCREMENT,
+ `group_id` int(11) NOT NULL,
+ `customer_id` int(11) NOT NULL,
+ `added_date` datetime NOT NULL,
+ `added_by` int(11) NOT NULL,
+ `loan_limit` double(50,2) NOT NULL,
+ `status` int(11) NOT NULL,
+ PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4
+
+ALTER TABLE `main_db`.`o_incoming_payments` 
+ADD COLUMN `collected_by` INT NULL DEFAULT 0 AFTER `status`;
+ALTER TABLE `main_db`.`o_incoming_payments` 
+CHANGE COLUMN `collected_by` `collected_by` INT NULL DEFAULT '0' AFTER `added_by`;
+
+CREATE TABLE `tenova_local`.`o_payment_statuses` ( `uid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(25) NOT NULL , PRIMARY KEY (`uid`)) ENGINE = InnoDB;
+INSERT INTO `o_payment_statuses` (`uid`, `name`) VALUES ('1', 'Successful'), ('2', 'Split'), ('3', 'Reversed Loan'), ('4', 'Reversed Payment');
+
+ALTER TABLE `o_loans`  ADD `asset_id` INT NOT NULL DEFAULT '0'  AFTER `group_id`,  ADD   INDEX  (`asset_id`);
+
+CREATE TABLE `tenova_local`.`o_assets` ( `uid` INT NOT NULL AUTO_INCREMENT , `name` VARCHAR(80) NOT NULL , `description` VARCHAR(250) NOT NULL , `category_` INT NOT NULL , `added_by` INT NOT NULL , `added_date` DATETIME NOT NULL , `buying_price` DOUBLE NOT NULL , `selling_price` DOUBLE NOT NULL , `photo` VARCHAR(50) NOT NULL , `status` INT(1) NOT NULL , PRIMARY KEY (`uid`)) ENGINE = InnoDB;
+
+ALTER TABLE o_assets ADD stock INT DEFAULT 0;
+ALTER TABLE o_loans MODIFY total_addons double(50,2) DEFAULT 0;
+ALTER TABLE o_loans MODIFY total_deductions double(50,2) DEFAULT 0;
+ALTER TABLE o_loans MODIFY current_agent INT DEFAULT 0;
+ALTER TABLE o_loans MODIFY loan_flag INT DEFAULT 0;
+ALTER TABLE o_loans MODIFY transaction_code VARCHAR(40) NULL;
+ALTER TABLE o_loans MODIFY transaction_date datetime NULL;
+ALTER TABLE o_loan_addons MODIFY added_by INT DEFAULT 0;

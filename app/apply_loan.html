@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Apply Loan</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="loader"> <img src="graphics/loader.gif" height="30px"> <span id="processing_">Processing...</span> </div>
+<div class="main_wrapper">
+    <div id="toast" class="toastsuccess">Toast</div>
+    <div class="overlay">   <a onclick="popuphide();" class="hidebut"><img src="graphics/cancel_64.png" height="20px"></a>
+        <div class="overlayin"> </div>
+    </div>
+    <div class="header" id="header">
+
+    </div>
+    <div class="dash_wrap">
+        <form id="frm_send" method="POST" onsubmit="return false;">
+        <div id="big_title">Apply for <span class="f800">Credit</span></div>
+        <div id="inner_body_wrap">
+
+            <div class="products_">
+               Loading products ...
+
+            </div>
+            <div id="loan_amount_box" style="display: none;">
+                <br/>
+            <table style="width: 99%;">
+                <tr><td colspan="2">Enter Amount</td></tr>
+                <tr><td colspan="2"><input type="number" class="input" id="amount_"></td></tr>
+
+
+            </table>
+
+
+            <table class="footbuttons">
+                <tr><td><button class="cancel">Cancel</button></td> <td><button onclick="apply_popup()" class="send">Apply</button></td></tr>
+            </table>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery.3.4.1.min.js"></script>
+<script src="js/main.js?v=1"></script>
+<script src="config/config.js"></script>
+<script>
+    $('document').ready(function () {
+        session_check();
+        product_list();
+        header(true);
+    });
+</script>
+
+</body>
+</html>

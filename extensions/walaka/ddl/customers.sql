@@ -1,0 +1,31 @@
+DROP TABLE IF EXISTS `o_customers`;
+
+CREATE TABLE `o_customers` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `customer_code` varchar(145) DEFAULT NULL COMMENT 'A unique customer identify apart from the UID',
+  `full_name` varchar(100) NOT NULL,
+  `primary_mobile` varchar(15) NOT NULL,
+  `email_address` varchar(60) DEFAULT NULL,
+  `physical_address` text NOT NULL,
+  `town` int(11) DEFAULT NULL,
+  `passport_photo` varchar(250) NOT NULL,
+  `national_id` varchar(10) NOT NULL,
+  `gender` varchar(5) NOT NULL COMMENT 'M, F',
+  `dob` date NOT NULL,
+  `added_by` int(11) NOT NULL,
+  `current_agent` int(11) DEFAULT 0,
+  `added_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `branch` int(11) NOT NULL COMMENT 'From o_branches',
+  `primary_product` int(11) NOT NULL COMMENT 'From o_products',
+  `loan_limit` double(100,2) NOT NULL DEFAULT 0.00,
+  `events` mediumtext NOT NULL,
+  `sec_data` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `pin_` varchar(55) DEFAULT NULL,
+  `device_id` varchar(55) DEFAULT NULL,
+  `flag` int(11) DEFAULT NULL,
+  `total_loans` int(11) DEFAULT 0,
+  `status` int(11) NOT NULL COMMENT 'From o_customer_statuses',
+  PRIMARY KEY (`uid`,`full_name`),
+  UNIQUE KEY `primary_phone_` (`primary_mobile`),
+  UNIQUE KEY `national_id_` (`national_id`)
+);

@@ -1,0 +1,302 @@
+1) Deposit 2000 to 756192227
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB3",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 2000,
+    "id": "TDNQAEEXXAVB3",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "data": {
+        "transaction": {
+            "reference_id": "18404726893",
+            "airtel_money_id": "disburs-WX4KD6Q95T-TDNQAEEXXAVB3",
+            "id": "TDNQAEEXXAVB3"
+        }
+    },
+    "status": {
+        "response_code": "DP00900001001",
+        "code": "200",
+        "success": true,
+        "result_code": "ESB000010",
+        "message": "You have deposited UGX 2,000 on 05-October-2023 11:55 Mobile Number: 0756192227 Trans ID: 18404726893. Your bal: UGX 319,441."
+    }
+}
+
+2) Number barred, please deposit 5000
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB4",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 5000,
+    "id": "TDNQAEEXXAVB4",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001000",
+        "code": "400",
+        "success": false,
+        "result_code": "0000900",
+        "message": "Receiver is barred"
+    }
+}
+
+3) number has been unbarred , please deposit 4500
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB6",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 4500,
+    "id": "TDNQAEEXXAVB6",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "data": {
+        "transaction": {
+            "reference_id": "18404727195",
+            "airtel_money_id": "disburs-WX4KD6Q95T-TDNQAEEXXAVB6",
+            "id": "TDNQAEEXXAVB6"
+        }
+    },
+    "status": {
+        "response_code": "DP00900001001",
+        "code": "200",
+        "success": true,
+        "result_code": "ESB000010",
+        "message": "You have deposited UGX 4,500 on 05-October-2023 12:04 Mobile Number: 0756192227 Trans ID: 18404727195. Your bal: UGX 309,341."
+    }
+}
+
+4) Insufficient funds, deposit 500000
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB7",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 500000,
+    "id": "TDNQAEEXXAVB7",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001007",
+        "code": "400",
+        "success": false,
+        "result_code": "0000900",
+        "message": "Dear customer, your balance is insufficient.Thank you."
+    }
+}
+
+5) More than the limit, 5000001
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB8",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 5000001,
+    "id": "TDNQAEEXXAVB8",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001000",
+        "code": "400",
+        "success": false,
+        "result_code": "0000900",
+        "message": "Dear customer, the maximum transaction amount limit has reached.Thank you."
+    }
+}
+
+6) Below the Minimum amount, deposit 0.5
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB9",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 0.5,
+    "id": "TDNQAEEXXAVB9",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001007",
+        "code": "400",
+        "success": false,
+        "result_code": "0000900",
+        "message": "Dear customer, the transaction amount you have entered is insufficient.Thank you."
+    }
+}
+
+7) Send Zero Amount
+
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB10",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 0,
+    "id": "TDNQAEEXXAVB10",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001004",
+        "code": "400",
+        "success": false,
+        "result_code": "ESB000008",
+        "message": "transaction amount must not be null and should be greater than 0"
+    }
+}
+
+8) Send Decimal amount, deposit 666.7
+
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB13",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 666.7,
+    "id": "TDNQAEEXXAVB13",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "data": {
+        "transaction": {
+            "reference_id": "18404727499",
+            "airtel_money_id": "disburs-WX4KD6Q95T-TDNQAEEXXAVB13",
+            "id": "TDNQAEEXXAVB13"
+        }
+    },
+    "status": {
+        "response_code": "DP00900001001",
+        "code": "200",
+        "success": true,
+        "result_code": "ESB000010",
+        "message": "You have deposited UGX 667 on 05-October-2023 12:14 Mobile Number: 0756192227 Trans ID: 18404727499. Your bal: UGX 308,374."
+    }
+}
+
+9) Send negative amount, deposit -10000
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "756192227",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB14",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": -10000,
+    "id": "TDNQAEEXXAVB14",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001004",
+        "code": "400",
+        "success": false,
+        "result_code": "ESB000008",
+        "message": "transaction amount must not be null and should be greater than 0"
+    }
+}
+
+10) Number not registered on AM, deposit 2000 to 752600907
+request body:
+{
+  "payee": {
+    "currency": "UGX",
+    "msisdn": "752600907",
+    "name": "Bob"
+  },
+  "reference": "TDNQAEEXXAVB15",
+  "pin": "<ENTER_PIN>",
+  "transaction": {
+    "amount": 2000,
+    "id": "TDNQAEEXXAVB15",
+    "type": "B2C"
+  }
+}
+
+response body:
+{
+    "status": {
+        "response_code": "DP00900001009",
+        "code": "400",
+        "success": false,
+        "result_code": "0000900",
+        "message": "No matching records found for the target ID you provided."
+    }
+}

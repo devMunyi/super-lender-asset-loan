@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Other Info</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="loader"> <img src="graphics/loader.gif" height="30px"> <span id="processing_">Processing...</span> </div>
+<div class="main_wrapper">
+    <div id="toast" class="toastsuccess">Toast</div>
+    <div class="overlay">   <a onclick="popuphide();" class="hidebut"><img src="graphics/cancel_64.png" height="20px"></a>
+        <div class="overlayin"> </div>
+    </div>
+    <div class="header" id="header">
+
+    </div>
+    <div class="dash_wrap">
+
+
+        <div id="inner_body_wrap">
+            <div class="mini_body" id="next_keen" style="display: block;">
+                <form id="frm_send" method="POST" onsubmit="return false;">
+                <div  class="big_title">Next of <span class="f800">Keen</span></div>
+            <table style="width: 99%;">
+                <tr><td colspan="2">Full Name</td></tr>
+                <tr><td colspan="2"><input type="text" class="input medium_text" id="keen_name"></td></tr>
+                <tr><td colspan="2">Email</td></tr>
+                <tr><td colspan="2"><input type="text" class="input medium_text" id="keen_email"></td></tr>
+                <tr><td colspan="2">Phone</td></tr>
+                <tr><td colspan="2"><input type="text" class="input medium_text" id="keen_phone"></td></tr>
+                <tr><td colspan="2">Relationship</td></tr>
+                <tr><td colspan="2">
+                    <select class="select medium_text" id="keen_relationship">
+                        <option value="0"> --Select One</option>
+                        <option value="Parent">Parent</option>
+                        <option value="Spouse">Spouse/Partner</option>
+                        <option value="Sibling">Sibling</option>
+                        <option value="Friend">Friend</option>
+                        <option value="Co-Worker">Co-Worker</option>
+                        <option value="Co-Worker">Other</option>
+
+                    </select>
+                </td></tr>
+
+
+            </table>
+
+            <table class="footbuttons">
+                <tr><td><button class="cancel">Cancel</button></td> <td><button onclick="next_of_keen()" class="send">Proceed</button></td></tr>
+            </table>
+                </form>
+            </div>
+            <div class="mini_body" id="referee1">
+                <form id="frm_ref" method="POST" onsubmit="return false;">
+                    <div  class="big_title">Referee <span class="f800">1</span></div>
+                    <table style="width: 99%;">
+                        <tr><td colspan="2">Full Name</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref1_name"></td></tr>
+                        <tr><td colspan="2">Email</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref1_email"></td></tr>
+                        <tr><td colspan="2">Phone</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref1_phone"></td></tr>
+                        <tr><td colspan="2">Relationship</td></tr>
+                        <tr><td colspan="2">
+                            <select class="select medium_text" id="ref1_relationship">
+                                <option value="0"> --Select One</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Spouse">Spouse/Partner</option>
+                                <option value="Sibling">Sibling</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Co-Worker">Co-Worker</option>
+                                <option value="Co-Worker">Other</option>
+                            </select>
+                        </td></tr>
+
+
+                    </table>
+
+                    <table class="footbuttons">
+                        <tr><td><button class="cancel">Cancel</button></td> <td><button onclick="referee1()" class="send">Proceed</button></td></tr>
+                    </table>
+                </form>
+            </div>
+            <div class="mini_body" id="referee2">
+                <form id="frm_ref2" method="POST" onsubmit="return false;">
+                    <div  class="big_title">Referee <span class="f800">2</span></div>
+                    <table style="width: 99%;">
+                        <tr><td colspan="2">Full Name</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref2_name"></td></tr>
+                        <tr><td colspan="2">Email</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref2_email"></td></tr>
+                        <tr><td colspan="2">Phone</td></tr>
+                        <tr><td colspan="2"><input type="text" class="input medium_text" id="ref2_phone"></td></tr>
+                        <tr><td colspan="2">Relationship</td></tr>
+                        <tr><td colspan="2">
+                            <select class="select medium_text" id="ref2_relationship">
+                                <option value="0"> --Select One</option>
+                                <option value="Parent">Parent</option>
+                                <option value="Spouse">Spouse/Partner</option>
+                                <option value="Sibling">Sibling</option>
+                                <option value="Friend">Friend</option>
+                                <option value="Co-Worker">Co-Worker</option>
+                                <option value="Co-Worker">Other</option>
+                            </select>
+                        </td></tr>
+
+
+                    </table>
+
+                    <table class="footbuttons">
+                        <tr><td><button class="cancel">Cancel</button></td> <td><button onclick="complete_reg()" class="send">Submit</button></td></tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="js/jquery.3.4.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="config/config.js"></script>
+<script>
+    $('document').ready(function () {
+        session_check();
+        header(true);
+    });
+</script>
+
+</body>
+</html>

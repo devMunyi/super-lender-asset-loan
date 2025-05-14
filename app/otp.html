@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+
+</head>
+<body>
+
+<div class="main_wrapper">
+    <div id="toast" class="toastsuccess">Toast</div>
+    <div class="overlay"> <a onclick="popuphide();" class="hidebut"><img src="graphics/cancel_64.png" height="20px"></a>
+        <div class="overlayin"></div>
+    </div>
+
+    <div class="header" id="header">
+
+    </div>
+    <div class="dash_wrap" style="margin-top: 15px;">
+        <span class="subhead"><img src="graphics/check.png" style="float: left;" height="30px"> Splendid, let's verify your number</span>
+        <div id="big_title" style="font-size: 22px;  text-align: center;  margin: 80px 0 15px 5px;">We have sent an OTP to your number</div>
+        <div id="inner_body_wrap" style="margin-bottom: 200px;">
+            <form onsubmit="return false;" method="POST" id="frm_otp" autocomplete="off">
+            <table style="width: 99%;">
+                <tr><td colspan="2"><input type="text" style="text-align: center"  maxlength="4" placeholder="Enter OTP" class="input autocompleteoff" id="pin_"></td></tr>
+
+            </table>
+            </form>
+            <table class="footbuttons">
+                <tr><td><button onclick="sign_up()" style="width: 99%;" class="send">Confirm</button></td></tr>
+                <tr><td><a href="login.html" class="transbutton">Resend OTP</a></td></tr>
+            </table>
+
+        </div>
+    </div>
+    <div class="footer_"></div>
+</div>
+
+
+<script src="js/jquery.3.4.1.min.js"></script>
+<script src="js/main.js"></script>
+<script src="config/config.js"></script>
+<script src="js/jquery.datetextentry.js"></script>
+<script>
+    $('document').ready(function () {
+        reset();
+        $('#dob_').datetextentry();
+    });
+</script>
+
+</body>
+</html>

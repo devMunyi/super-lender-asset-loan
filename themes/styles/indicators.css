@@ -1,0 +1,32 @@
+.spinner-border {
+    display: inline-block;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: text-bottom;
+    border: 0.20em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    -webkit-animation: spinner-border 0.75s linear infinite;
+    animation: spinner-border 0.75s linear infinite;
+    margin-right: 0.75rem;
+}
+
+
+
+@keyframes spinner-border {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+/* Button styles */
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6; /* Optional: to visually indicate the disabled state */
+}

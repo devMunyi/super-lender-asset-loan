@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS `o_branch_statuses`;
+ALTER TABLE `o_customers` DROP PRIMARY KEY, ADD PRIMARY KEY (`uid`) USING BTREE;
+ALTER TABLE `o_customers`
+-- Drop the unique constraint on national_id
+ALTER TABLE `o_customers` DROP INDEX `national_id_`;
+-- Create an index on national_id using ALTER TABLE
+ALTER TABLE `o_customers` ADD INDEX `national_id_index` (`national_id`);
+
+ -- 1 Oct 2024 --
+-- Needs evaluation ** ALTER TABLE o_loan_addons --
+ADD CONSTRAINT unique_loan_addon_status
+UNIQUE (loan_id, addon_id, status);

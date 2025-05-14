@@ -1,0 +1,10 @@
+.logo-back{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background: white;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    padding: 15px;
+}
