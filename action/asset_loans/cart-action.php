@@ -1,4 +1,5 @@
 <?php
+// action/asset_loans/cart-action.php
 session_start();
 // ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
 include_once '../../configs/20200902.php';
@@ -7,8 +8,7 @@ include_once("../../configs/conn.inc");
 
 $userd = session_details();
 if($userd == null){
-    die(errormes("Your session is invalid. Please re-login"));
-    exit();
+    exit(errormes("Your session is invalid. Please re-login"));
 }
 
 $action = $_POST['action'];
@@ -16,8 +16,7 @@ $uid = $_POST['uid'];
 
 if($uid > 0){}
 else{
-    die(errormes("Item ID invalid"));
-    exit();
+    exit(errormes("Item ID invalid"));
 }
 
 $item = fetchonerow('o_asset_cart',"uid='$uid'","quantity, status, asset_id");

@@ -11,8 +11,10 @@
         $buying_price = $asset["buying_price"];
         $selling_price = $asset["selling_price"];
         $added_date = $asset["added_date"];
-        $photo_name = $asset["photo"];
-        $photoSrc = $photo_name ? "assets-upload/thumb_".$photo_name : "dist/img/avatar.png";
+        $photo_src = trim($asset["photo"]);
+        if (substr(trim($photo_src), 0, 4) != 'http') {
+            $photo_src = $photo_src ? "assets-upload/thumb_" . $photo_src : "dist/img/avatar.png";
+        }
         $stock = $asset["stock"];
         $loans = 0;
 
@@ -66,7 +68,7 @@
                                 <a class="btn btn-default btn-md pull-right" href="assets?cat=cart"><i class="fa fa-shopping-cart"></i> Go to Cart</a>
                             </div>
                             <div class="col-md-3">
-                               <img src="<?php echo $photoSrc; ?>" width="100%"/>
+                               <img src="<?php echo $photo_src; ?>" width="100%"/>
                             </div>
                         </div>
                     </div>

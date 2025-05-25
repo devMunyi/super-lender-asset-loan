@@ -6,8 +6,7 @@ include_once '../configs/conn.inc';
 /////----------Session Check
 $userd = session_details();
 if ($userd == null) {
-    die(errormes('Your session is invalid. Please re-login'));
-    exit();
+    exit(errormes('Your session is invalid. Please re-login'));
 }
 
 /////---------End of session check
@@ -48,25 +47,25 @@ $photoSrc = $photo_name ? "assets-upload/thumb_".$photo_name : "dist/img/avatar2
                             ?>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="asset_product" class="col-sm-3 control-label">Asset Product</label>
 
                         <div class="col-sm-9">
                             <select class="form-control" id="asset_product">
                                 <option value="0">--Select One</option>
                                 <?php
-                                $o_next_steps_ = fetchtable('o_loan_products',"status=1 AND uid in ($asset_product_list)", "uid", "desc", "0,100", "uid ,name");
-                                while($a = mysqli_fetch_array($o_next_steps_))
-                                {
-                                    $uid = $a['uid'];
-                                    $name = $a['name'];
-                                    echo "<option value='$uid'>$name</option>";
-                                }
+                                // $o_next_steps_ = fetchtable('o_loan_products',"status=1", "uid", "desc", "0,100", "uid ,name");
+                                // while($a = mysqli_fetch_array($o_next_steps_))
+                                // {
+                                //     $uid = $a['uid'];
+                                //     $name = $a['name'];
+                                //     echo "<option value='$uid'>$name</option>";
+                                // }
 
                                 ?>
                             </select>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="details" class="col-sm-3 control-label">Amount</label>
 

@@ -14,7 +14,7 @@ $csp = [
     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://7dbeefd5.sl-3mg.pages.dev https://cdn.jsdelivr.net https://unpkg.com https://fonts.googleapis.com https://cdnjs.cloudflare.com https://d3js.org",
     "style-src 'self' 'unsafe-inline' https://7dbeefd5.sl-3mg.pages.dev https://fonts.googleapis.com https://cdn.jsdelivr.net",
     "font-src 'self' https://fonts.gstatic.com https://cdn.jsdelivr.net https://7dbeefd5.sl-3mg.pages.dev",
-    "img-src 'self' data: https://7dbeefd5.sl-3mg.pages.dev https://4f87d4cd.spke.pages.dev https://nwk-84y.pages.dev https://tenakata.superlender.co.ke $dynamic_img_src",
+    "img-src 'self' data: https://7dbeefd5.sl-3mg.pages.dev https://4f87d4cd.spke.pages.dev https://nwk-84y.pages.dev https://tenakata.superlender.co.ke https://www.simplepayhomedepot.com $dynamic_img_src",
     "connect-src 'self' https://7dbeefd5.sl-3mg.pages.dev https://passkeys.spcl.one https://cdn.jsdelivr.net https://fonts.googleapis.com wss://webrtc.africastalking.com",
     "frame-src 'self' https://maps.google.com https://maps.apple.com https://www.google.com https://www.apple.com https://7dbeefd5.sl-3mg.pages.dev",
     "media-src 'self' https://superlender.co.ke",

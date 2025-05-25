@@ -224,20 +224,20 @@
                                                     <div class="gmap_canvas"><iframe
                                                             src="<?php echo $cust['geolocation']; ?>&amp;t=&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                                                             frameborder="0" scrolling="no"
-                                                            style="width: 250px; height: 250px;" loading="lazy">></iframe>
+                                                            style="width: 100%; height: 100%;" loading="lazy">></iframe>
                                                         <style>
                                                             .mapouter {
                                                                 position: relative;
-                                                                height: 250px;
-                                                                width: 250px;
+                                                                height: 100%;
+                                                                width: 100%;
                                                                 background: #fff;
                                                             }
                                                         </style>
                                                         <style>
                                                             .gmap_canvas {
                                                                 overflow: hidden;
-                                                                height: 250px;
-                                                                width: 250px
+                                                                height: 100%;
+                                                                width: 100%
                                                             }
 
                                                             .gmap_canvas iframe {
@@ -350,9 +350,9 @@
                                     if ($cust['status'] == 1) {
                                         ?>
                                         <tr>
-                                            <td><button class="btn btn-success btn-block btn-md"
-                                                    onclick="modal_view('/forms/modal_loan_add_edit-form.php','customer_id=<?php echo $customer_; ?>','Create a New Loan'); modal_show();"><i
-                                                        class="fa fa-plus"></i> Give a Loan</button></td>
+                                            <td><a href="assets" class="btn btn-success btn-block btn-md"
+                                                    onclick=""><i
+                                                        class="fa fa-plus"></i> Give a Loan</a></td>
                                         </tr>
                                         <!-- <tr><td><a href="loans?loan-add-edit&customer=<?php echo $customer_ ?>" class="btn btn-success btn-block btn-md"><i class="fa fa-plus"></i> Give a Loan</a></td></tr> -->
                                         <?php

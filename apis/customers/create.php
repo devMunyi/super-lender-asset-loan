@@ -27,8 +27,6 @@ $status = 3; // default status is lead
 $phone_number_provider = ($cc == 254) ? 1 : intval($data['phone_number_provider'] ?? 0);
 $group_id = intval($_POST['group_id'] ?? 0);
 
-;
-
 try {
     //// ================== Validation starts here
     if ((input_available($full_name)) == 0) {

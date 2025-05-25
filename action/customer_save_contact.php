@@ -71,8 +71,6 @@ if (($contact_type) > 0) {
     exit(errormes("Please select Contact Type"));
 }
 
-
-
 if ($contact_type == 1 || $contact_type == 2) {
     $enc_phone = hash('sha256', $filtered_phone_val);
     $fds = array('customer_id', 'contact_type', 'value', 'enc_phone', 'status');

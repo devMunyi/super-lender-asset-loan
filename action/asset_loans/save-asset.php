@@ -3,6 +3,11 @@ session_start();
 include_once ("../../php_functions/functions.php");
 include_once ("../../configs/conn.inc");
 
+if ($OBJECT_STORAGE_BUCKET == 1){
+    include_once("../../vendor/autoload.php");
+    include_once("../../php_functions/objectStorage.php");
+}
+
 /////----------Session Check
 $userd = session_details();
 if($userd == null){
@@ -82,6 +87,37 @@ if($file_size > 100) {
         makeThumbnails($upload_location, $upload, 200, 200, "thumb_" . $file_name_only);
     }
 }
+
+$stored_address = $upload;
+
+////----Check the optional file resize flag
+if ($resize_photos == 1) {
+    $imagePath = "../../assets-upload/$stored_address";
+    $res = resizeAndCompressImage($imagePath);
+    if ($res == 1) {
+        // echo sucmes("Resized");
+    }
+
+
+    //// ---- Check if OBJECT_STORAGE_BUCKET is set 
+    if ($OBJECT_STORAGE_BUCKET == 1) {
+
+        // upload resized image
+        $resp = uploadFileToBucket($imagePath);
+
+        // upload thumbnail
+        if($make_thumbnail == 1){
+            $thumbPath = "../../assets-upload/thumb_$stored_address";
+            $resp = uploadFileToBucket($thumbPath);
+        }
+
+        // update stored address to take full path
+        $stored_address = $UPLOAD_BASE_URL . $stored_address;
+    }
+    //// ---- End of check if OBJECT_STORAGE_BUCKET is set 
+}
+
+/// ----End of check file resize
 
 ///////////------------------Save
 $fds = array('name','description', 'category_', 'added_by', 'added_date', 'buying_price','selling_price', 'photo', 'status', 'stock');

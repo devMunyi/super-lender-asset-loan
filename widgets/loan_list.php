@@ -102,7 +102,7 @@
                         $create_loan = permission($userd['uid'], 'o_loans', "0", "create_");
                         if ($create_loan == 1) {
                         ?>
-                            <a href="loans?loan-add-edit" class="btn btn-success float-right"><i class="fa fa-plus"></i> CREATE LOAN</a>
+                            <a href="assets" class="btn btn-success float-right"><i class="fa fa-plus"></i> CREATE LOAN</a>
                         <?php
                         }
                         ?>

@@ -40,13 +40,10 @@ if ($upload_perm == 0) {
 
 if ((input_available($title)) == 0) {
     die(errormes("Title is required"));
-
-    exit();
 }
 if ($category > 0) {
 } else {
     die(errormes("Upload type is required"));
-    exit();
 }
 
 $allowed_formats = fetchrow("o_customer_document_categories", "uid=$category", "formats");
@@ -55,11 +52,9 @@ $allowed_formats_array = explode(",", $allowed_formats);
 if ($file_size > 0) {
     if ((file_type($file_name, $allowed_formats_array)) == 0) {
         die(errormes("This file format is not allowed. Only $allowed_formats "));
-        exit();
     }
 } else {
     die(errormes("File not attached or has invalid size"));
-    exit();
 }
 
 $upload = upload_file($file_name, $file_tmp, $upload_location);

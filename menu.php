@@ -59,7 +59,7 @@
                         <?php
                     }
                     ?>
-                    <li><a href="scoring"><i class="fa fa-users text-red"></i> Scoring</a></li>
+                    <!-- <li><a href="scoring"><i class="fa fa-users text-red"></i> Scoring</a></li> -->
                 </ul>
             </li>
 
@@ -88,17 +88,19 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
+                    <li><a href="assets"><i class="fa fa-circle-o"></i> Assets</a></li>
                     <li><a href="loans"><i class="fa fa-circle-o"></i> All Loans</a></li>
                     <li><a href="defaulters" class="text-red"><i class="fa fa-circle-o"></i> Defaulters</a></li>
                     <li><a href="installments" class="text-orange"><i class="fa fa-circle-o"></i> Installments</a></li>
                     <!-- <li><a href="installments-v2" class="text-blue"><i class="fa fa-circle-o"></i> Installments V2</a></li> -->
                     <li><a href="falling-due" class="text-green"><i class="fa fa-circle-o"></i> Falling Due</a></li>
                     <li><a href="loans?approvals"><i class="fa fa-circle-o"></i> Approvals</a></li>
+
                     <?php
                     if($asset_loans == 1){
                         ?>
 
-                        <li class="treeview">
+                        <!-- <li class="treeview">
                             <a href="#">
                                 <i class="fa fa-shopping-bag text-orange"></i>
                                 <span>Asset Finance</span>
@@ -112,7 +114,7 @@
                                 <li><a href="assets.php?cat=assets"><i class="fa fa-circle-o"></i> Assets</a></li>
 
                             </ul>
-                        </li>
+                        </li> -->
                         <?php
                     }
                     ?>
@@ -124,11 +126,8 @@
                 <a href="incoming-payments">
                     <i class="fa fa-credit-card"></i>
                     <span>Payments</span>
-
                 </a>
-
             </li>
-
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-sitemap"></i>
@@ -156,10 +155,7 @@
                 <ul class="treeview-menu">
                     <li><a href="reports"><i class="fa fa-circle-o"></i> All Reports</a></li>
                     <li><a href="allocations-v2"><i class="fa fa-circle-o"></i> Allocations</a></li>
-                    <li><a href="analytics"><i class="fa fa-circle-o"></i> Analytics</a></li>
                 </ul>
-
-
             </li>
             <li class="treeview">
             <a href="#">
@@ -194,12 +190,9 @@
                 </a>
 
             </li>
-
-
         </ul>
         <?php
         }
         ?>
     </section>
-    <!-- /.sidebar -->
 </aside>

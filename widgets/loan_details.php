@@ -32,10 +32,10 @@ $mobile_phone_provider = intval($customer['phone_number_provider'] ?? 1);
 $MSISDN_provider = ($cc == 254) ? 'KE_SAF' : getMSISDNProvider($mobile_phone_provider);
 
 $phone_providers = [
-    1 => 'Mpesa',
-    2 => 'Airtel Money',
-    3 => 'Airtel Money',
-    4 => 'MTN Money'
+    1 => 'Safaricom KE',
+    2 => 'Airtel KE',
+    3 => 'Airtel Uganda',
+    4 => 'MTN Uganda'
 ];
 
 $mobile_phone_provider = $customer['phone_number_provider'];

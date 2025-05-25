@@ -1,31 +1,23 @@
 <?php
-session_start();
-// ini_set('display_errors', 1); ini_set('display_startup_errors', 1); error_reporting(E_ALL);
-include_once '../../configs/20200902.php';
-include_once("../../php_functions/functions.php");
+
+$expected_http_method = 'GET';
+include_once("../../vendor/autoload.php"); // auto created when installing a dependency with composer or run composer update if have composer.json file
+// include_once ("../../configs/allowed-ips-or-origins.php");
 include_once("../../configs/conn.inc");
-if ($has_archive == 1) {
-    include_once("../../configs/archive_conn.php");
-}
+include_once("../../configs/jwt.php");
+include_once("../../php_functions/jwtAuthUtils.php");
+include_once("../../php_functions/jwtAuthenticator.php");
+include_once("../../php_functions/functions.php");
 
-$userd = session_details();
-if ($userd == null) {
-    exit(errormes("Your session is invalid. Please re-login"));
-}
 
-$create_loan = permission($userd['uid'], 'o_loans', "0", "create_");
-if ($create_loan != 1) {
-    exit(errormes("You don't have permission to create loan"));
-}
+$data = json_decode(file_get_contents('php://input'), true);
+
 
 $customer_id = $_POST['customer_id'];
-$loan_amount = $_POST['loan_amount'];
-// echo "amount => ".$loan_amount;
-//$asset_id = $_POST['asset_id']; ----Replaced by cart
 $period = $_POST['period'];
 $added_by = $userd['uid'];
-$application_mode = $_POST['application_mode'] ?? 'MANUAL';
-$loan_type = $_POST['loan_type'] ?? 4;
+$application_mode = 'WAPP';
+$loan_type = 4;
 $product_id = $_POST['product_id'];
 
 //echo errormes("$product_id");

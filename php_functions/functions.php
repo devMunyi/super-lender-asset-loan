@@ -2700,8 +2700,6 @@ function convert_message($message, $loan_id)
             if ('o_' . $table == 'o_loans') {
                 $final_value = $loans[$field];
             } else if ('o_' . $table == 'o_customers') {
-
-
                 $final_value = $customers[$field];
                 // check if contains full_name so that we grap the firstname only
                 if ($field == 'full_name' && strpos($final_value, ' ') !== false) {
@@ -4205,7 +4203,7 @@ function give_loan($customer_id, $product_id, $amount, $application_mode, $force
 
     $current_loan = fetchonerow('o_loans', "customer_id='$customer_id' AND disbursed=1 AND paid=0 AND status!=0", "uid, loan_balance");
     if ($current_loan['uid'] > 0) {
-        return "You have an outstanding loan of " . $current_loan['loan_balance'] . "";
+        return "You have an outstanding loan of Ksh" . $current_loan['loan_balance'] . "";
     }
 
     /////
@@ -4241,7 +4239,8 @@ function give_loan($customer_id, $product_id, $amount, $application_mode, $force
     }
 
     if ($amount < $prod['min_amount'] || $amount > $prod['max_amount']) {
-        return "Product allows amount between " . $prod['min_amount'] . " and " . $prod['max_amount'] . "";
+        $product_name = $prod['name'] ?? '';
+        return "$product_name customer can borrow amount between Ksh" . $prod['min_amount'] . " and ksh" . $prod['max_amount'] . "";
     }
 
 
@@ -4357,7 +4356,11 @@ function give_loan($customer_id, $product_id, $amount, $application_mode, $force
     $fds = array('customer_id', 'account_number', 'enc_phone', 'product_id', 'loan_amount', 'disbursed_amount', 'total_repayable_amount', 'total_repaid', 'loan_balance', 'period', 'period_units', 'payment_frequency', 'payment_breakdown', 'total_instalments', 'total_instalments_paid', 'current_instalment', 'given_date', 'next_due_date', 'final_due_date', 'added_by', 'current_lo', 'current_co', 'current_branch', 'added_date', 'loan_stage', 'application_mode', 'status');
     $vals = array("$customer_id", "$primary_mobile", "$enc_phone", "$product_id", "$amount", "$disbursed_amount", "$amount", "0", "$amount", "$period", "$period_units", "$pay_frequency", "$payment_breakdown", "$total_instalments", "$total_instalments_paid", "$current_instalment", "$given_date", "" . move_to_monday($next_due_date) . "", "" . move_to_monday($final_due_date) . "", "$added_by", "$current_lo", "$current_co", "$branch", "$added_date", "$loan_stage", "$application_mode", "1");
     $create = addtodb('o_loans', $fds, $vals);
+
     // updatedb("o_customers", "primary_product = $product_id", "uid = $customer_id");
+
+    echo "Created Loan: $create";
+
     if ($create == 1) {
 
         // updatedb("o_customers", "total_loans = '$total_loans'", "uid = $customer_id");

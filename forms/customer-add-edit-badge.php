@@ -6,8 +6,7 @@ include_once("../configs/conn.inc");
 /////----------Session Check
 $userd = session_details();
 if ($userd == null) {
-    die(errormes("Your session is invalid. Please re-login"));
-    exit();
+    exit(errormes("Your session is invalid. Please re-login"));
 }
 
 $customer_id = decurl($_POST['customer_id']);
@@ -28,7 +27,7 @@ if ($customer_id  > 0) {
                 <?php
 
                 // 3, 8, 9
-                $badges = fetchtable('o_badges', "status= 1 AND uid in (3,5,8,9,10)", "uid", "asc", "1000");
+                $badges = fetchtable('o_badges', "status= 1", "uid", "asc", "1000");
                 echo '<div style="width: inherit; display: flex; flex-wrap: wrap; gap: 10px;">';
                 while ($b = mysqli_fetch_array($badges)) {
                     $bid = $b['uid'];
@@ -48,7 +47,7 @@ if ($customer_id  > 0) {
                         $action = 'ADD';
                     }
 
-                    echo "<span><a class='btn $current_class' title=\"$description\" onclick=\"tag_client($client_id, $bid)\"><img height='20px' src=\"badges/$icon\"><span class='text-black font-bold'>$title</span></a></span>";
+                    echo "<span><a class='btn $current_class' title=\"$description\" onclick=\"tag_client($client_id, $bid)\"><img height='20px' src=\"badges/$icon\">  <span class='text-black font-bold'>$title</span></a></span>";
                 }
 
 

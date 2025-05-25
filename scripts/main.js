@@ -4250,6 +4250,7 @@ if ($("#tab_9").length) {
 
 ///==========================Begin Assets
 function load_assets() {
+  $("#asset-list").html('<i>Loading...</i>');
   let where = $("#_where_").val();
   if (!where) {
     where = "uid > 0";
@@ -4375,6 +4376,14 @@ function update_asset_stock() {
 function cart_add(aid) {
   const params = "aid=" + aid;
   dbaction("/action/asset_loans/add-to-cart", params, function (feed) {
+    if (feed?.includes("uccess")) {
+      const cartCounterElem = document.getElementById("cart-counter");
+      const cartCurrentVal = parseInt(cartCounterElem.innerHTML);
+      const cartNewVal = cartCurrentVal + 1;
+      cartCounterElem.innerHTML = cartNewVal;
+      localStorage.setItem("cartCounterValue", cartNewVal);
+    }
+
     feedback("DEFAULT", "TOAST", ".feedback_", feed, "2");
   });
 }
@@ -4382,9 +4391,35 @@ function cart_add(aid) {
 function cart(action, uid) {
   const params = "action=" + action + "&uid=" + uid;
   dbaction("/action/asset_loans/cart-action", params, function (feed) {
+    // get current value from local storage
+    let currentCount = parseInt(localStorage.getItem("cartCounterValue")) || 0;
+    
+    const hasError = feed?.includes("error");
+    if (action === 'ADD' && !hasError) {
+      currentCount++;
+    } else if (action === 'MINUS' && !hasError) {
+      currentCount = Math.max(currentCount - 1, 0);
+    } else if (action === 'REMOVE' && !hasError) {
+      currentCount = Math.max(currentCount - 1, 0);
+    }
+
+    // counterElem.innerHTML = currentCount;
+    const cartTotalElem = document.getElementById("cart_total");
+    if(currentCount === 0){
+      cartTotalElem.innerHTML = "0.00";
+
+      //=== go to assets page in 2500 ms
+      setTimeout(function () {
+        gotourl("assets");
+      }, 2500);
+    }
+    localStorage.setItem("cartCounterValue", currentCount);
+
+
     feedback("DEFAULT", "TOAST", ".feedback_", feed, "2");
   });
 }
+
 
 function get_events(staff_uid, tab = "") {
   const start_date = $("#from_date").val();

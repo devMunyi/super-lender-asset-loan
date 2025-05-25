@@ -61,14 +61,16 @@ $company = company_settings();
                      include_once('widgets/asset-finance/other.php');
                  }
                  else{
-                     include_once('widgets/asset-finance/summary.php');
+                    //  include_once('widgets/asset-finance/summary.php');
+                    include_once('widgets/asset-finance/assets.php');
                  }
                 }
                 elseif (isset($_GET['asset-add-edit'])){
                     include_once('forms/asset-add-edit.php');
                 }
                 else {
-                    include_once('widgets/asset-finance/summary.php');
+                    // include_once('widgets/asset-finance/summary.php');
+                    include_once('widgets/asset-finance/assets.php');
                 }
                 ?>
             </div>
