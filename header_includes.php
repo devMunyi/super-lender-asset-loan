@@ -4,6 +4,9 @@ header("X-Frame-Options: DENY");
 header("X-XSS-Protection: 1; mode=block");
 header("X-Content-Type-Options: nosniff");
 header("Referrer-Policy: strict-origin-when-cross-origin");
+// Permission Policy (Feature Policy)
+header("Permissions-Policy: geolocation=(self), camera=(self), microphone=(self), fullscreen=(self), payment=(self)");
+
 // Content Security Policy tailored for your CDNs
 
 
