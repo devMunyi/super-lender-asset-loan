@@ -79,6 +79,12 @@
                     <li style="display: none;"><a href="tickets"><i class="fa fa-circle-o"></i> Tickets</a></li>
                 </ul>
             </li>
+            <li>
+                <a href="assets">
+                    <i class="fa fa-shopping-cart"></i>
+                    <span>Shop</span>
+                </a>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-money"></i>
@@ -88,7 +94,7 @@
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="assets"><i class="fa fa-circle-o"></i> Assets</a></li>
+                    <!-- <li><a href="assets"><i class="fa fa-circle-o"></i> Assets</a></li> -->
                     <li><a href="loans"><i class="fa fa-circle-o"></i> All Loans</a></li>
                     <li><a href="defaulters" class="text-red"><i class="fa fa-circle-o"></i> Defaulters</a></li>
                     <li><a href="installments" class="text-orange"><i class="fa fa-circle-o"></i> Installments</a></li>

@@ -1,11 +1,11 @@
 <section class="content-header">
     <h1>
-        Asset Financing
+        Shop Items
 
     </h1>
     <ol class="breadcrumb">
         <li><a href="index"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Assets</li>
+        <li class="active">Shop Items</li>
     </ol>
 </section>
 <section class="content">
